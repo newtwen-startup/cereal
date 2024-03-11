@@ -6,7 +6,7 @@ if(PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
     set(CEREAL_MASTER_PROJECT ON)
 endif()
 
-option(SKIP_PORTABILITY_TEST "Skip portability (32 bit) tests" OFF)
+option(SKIP_PORTABILITY_TEST "Skip portability (32 bit) tests" ON)
 include(CheckCXXCompilerFlag)
 set(CMAKE_REQUIRED_FLAGS "-m32")
 check_cxx_compiler_flag("-m32" COMPILER_SUPPORT_M32)
@@ -15,14 +15,14 @@ if(NOT COMPILER_SUPPORT_M32)
     set(SKIP_PORTABILITY_TEST ON CACHE BOOL "Skip portability (32 bit) tests" FORCE)
 endif()
 
-option(BUILD_DOC "Build documentation" ON)
-option(BUILD_SANDBOX "Build sandbox examples" ON)
-option(SKIP_PERFORMANCE_COMPARISON "Skip building performance sandbox comparison (requires boost)" OFF)
+option(BUILD_DOC "Build documentation" OFF)
+option(BUILD_SANDBOX "Build sandbox examples" OFF)
+option(SKIP_PERFORMANCE_COMPARISON "Skip building performance sandbox comparison (requires boost)" ON)
 
 # TODO: should not be needed! CK
-if(NOT CMAKE_VERSION VERSION_LESS 3.0) # installing cereal requires INTERFACE lib
-    option(JUST_INSTALL_CEREAL "Don't do anything besides installing the library" OFF)
-endif()
+#if(NOT CMAKE_VERSION VERSION_LESS 3.0) # installing cereal requires INTERFACE lib
+    option(JUST_INSTALL_CEREAL "Don't do anything besides installing the library" ON)
+#endif()
 
 
 set(CEREAL_THREAD_LIBS)
